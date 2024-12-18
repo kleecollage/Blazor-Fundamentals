@@ -1,0 +1,129 @@
+@page "/directory"
+<h3>Directory Persons</h3>
+
+<div class="row">
+    @foreach (var person in Persons)
+    {
+        <div class="col-4">
+            <CompPerson Names="@person.Name" Lastnames="@person.Lastname">
+                    <FragmentAddress>
+                    @if (person.Addresses.Count > 0)
+                    {
+                        <h3>Address</h3>
+                        @foreach (var address in person.Addresses)
+                        {
+                            <CompAddress Address="@address" />
+                        }
+                    }
+                    @if(person.Addresses.Count == 0) {
+                        <p>No address registered</p>
+                    }
+                    </FragmentAddress>
+            </CompPerson >
+        </div>
+    }
+</div>
+
+@code {
+    public List<Person> Persons { get; set; }
+
+    public DirectoryPersons()
+    {
+        Persons = new List<Person>
+        {
+            new Person
+            {
+                Name = "John",
+                Lastname = "Doe",
+                Addresses = new List<Address>
+                {
+                    new Address()
+                    {
+                        TypeAdress = "Department",
+                        City = "New York",
+                        Code = 5589,
+                        Street = "Jefferson 651"
+                    }
+                }
+            },
+            new Person
+            {
+                Name = "Alice",
+                Lastname = "Smith",
+                Addresses = new List<Address>
+                {
+                    
+                }
+            },
+            new Person
+            {
+                Name = "Michael",
+                Lastname = "Johnson",
+                Addresses = new List<Address>
+                {
+                    new Address
+                    {
+                        TypeAdress = "Apartment",
+                        City = "Chicago",
+                        Code = 6065,
+                        Street = "Oak Avenue 45"
+                    },
+                    new Address
+                    {
+                        TypeAdress = "House",
+                        City = "Los Angeles",
+                        Code = 9021,
+                        Street = "Elm Street 123"
+                    }
+
+                }
+            },
+            new Person
+            {
+                Name = "Sophia",
+                Lastname = "Williams",
+                Addresses = new List<Address>
+                {
+                    
+                }
+            },
+            new Person
+            {
+                Name = "James",
+                Lastname = "Brown",
+                Addresses = new List<Address>
+                {
+                    new Address
+                    {
+                        TypeAdress = "Studio",
+                        City = "Phoenix",
+                        Code = 8501,
+                        Street = "Cedar Street 90"
+                    },
+                    new Address
+                    {
+                        TypeAdress = "Condo",
+                        City = "Houston",
+                        Code = 7701,
+                        Street = "Maple Lane 78"
+                    }
+                }
+            },
+            new Person
+            {
+                Name = "Emma",
+                Lastname = "Davis",
+                Addresses = new List<Address>
+                {
+                    new Address
+                    {
+                        TypeAdress = "Townhouse",
+                        City = "Philadelphia",
+                        Code = 1910,
+                        Street = "Pine Road 120"
+                    }
+                }
+            },
+        };
+    }
+}
