@@ -1,0 +1,14 @@
+@page "/list"
+@*@inherits ListElementsCodeBehind*@
+
+<h3>List Elements</h3>
+<ul>
+    @foreach (var element in elements)
+    {
+        <li>@element</li>
+    }
+</ul>
+
+<input type="text" @bind="newElement" placeholder="New Elements..." />
+
+<button @onclick="AddElements">Add</button>
