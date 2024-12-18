@@ -1,0 +1,30 @@
+@page "/error-demo"
+<h3>HandleErrors</h3>
+@if (_hasError)
+{
+    <p style="color: darkred">Error occurred: @messageError</p>
+}
+else
+{
+    <button @onclick="ErrorCause">Create Error</button>
+}
+@code {
+    private bool _hasError = false;
+    private string messageError;
+
+    private void ErrorCause()
+    {
+        try
+        {
+            throw new InvalidOperationException("This is a controlled error!");
+        }
+        catch (Exception e)
+        {
+            _hasError = true;
+            messageError = e.Message;
+            throw;
+        }
+    }
+    
+    
+}

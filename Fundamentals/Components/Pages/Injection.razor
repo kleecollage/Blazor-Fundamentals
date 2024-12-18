@@ -1,0 +1,11 @@
+@page "/injection"
+
+
+@inject IMyService MyService
+
+<h3>Injection Dependencies is Working!</h3>
+<p>@MyService.GetMessage()</p>
+
+@code {
+    
+}
