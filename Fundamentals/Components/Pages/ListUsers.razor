@@ -1,0 +1,22 @@
+@page "/users-list"
+
+<h3>ListUsers</h3>
+<ul>
+    @foreach (var person in _persons)
+    {
+        <li>@person.Name @person.Lastname</li>
+    }
+</ul>
+
+@code {
+
+    private List<Person> _persons = new List<Person>
+    {
+        new Person { Name = "Alice", Lastname = "Smith" },
+        new Person { Name = "Michael", Lastname = "Johnson" },
+        new Person { Name = "Sophia", Lastname = "Williams" },
+        new Person { Name = "James", Lastname = "Brown" },
+        new Person { Name = "Emma", Lastname = "Davis" }
+
+    };
+}
