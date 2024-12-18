@@ -1,0 +1,23 @@
+<h3>Multiple Render Fragment</h3>
+<div class="my-card">
+    <div class="my-card-header">
+        @Header
+    </div>
+    <div class="my-card-body">
+        @Body
+    </div>
+    <div class="my-card-footer">
+        @Footer
+    </div>
+</div>
+
+@code {
+    [Parameter]
+    public RenderFragment? Header { get; set; }
+    
+    [Parameter]
+    public RenderFragment? Body { get; set; }
+    
+    [Parameter]
+    public RenderFragment? Footer { get; set; }
+}
