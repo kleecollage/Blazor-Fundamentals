@@ -1,0 +1,21 @@
+@page "/test/{Category?}/{Id:int?}"
+@page "/example"
+
+@inject NavigationManager Navigation
+
+<h1>Test Page is working!</h1>
+<h2>Detail of item with ID: @Id</h2>
+<h2>Category: @Category</h2>
+
+<button @onclick="goToPage">Go to page</button>
+
+@code {
+    [Parameter] public int? Id { get; set; }
+
+    [Parameter] public string? Category { get; set; }
+
+    void goToPage()
+    {
+        Navigation.NavigateTo("/Counter");
+    }
+}
