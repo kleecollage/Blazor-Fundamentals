@@ -1,11 +1,17 @@
 @page "/test/{Category?}/{Id:int?}"
-@page "/example"
+@page "/example" @*second path*@
 
 @inject NavigationManager Navigation
+@inject IConfiguration Configuration
 
 <h1>Test Page is working!</h1>
+<strong>Parameters:</strong>
 <h2>Detail of item with ID: @Id</h2>
 <h2>Category: @Category</h2>
+
+<h3>Config Values:</h3>
+<p>API Url: @UrlApi </p>
+<p>Feature enabled: @EnableFeature</p>
 
 <button @onclick="goToPage">Go to page</button>
 
@@ -18,4 +24,32 @@
     {
         Navigation.NavigateTo("/Counter");
     }
+
+    private string? UrlApi;
+    private bool EnableFeature;
+    
+    protected override void OnInitialized()
+    {
+        // Access to appsettings.json values
+        UrlApi = Configuration["AppConfig:UrlApi"];
+        EnableFeature = bool.Parse(Configuration["AppConfig:EnableFeature"] ?? "false");
+    }
+    
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
