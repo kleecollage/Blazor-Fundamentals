@@ -1,18 +1,19 @@
 @page "/test/{Category?}/{Id:int?}"
-@page "/example" @*second path*@
+@*second path*@
+@page "/example" 
 
 @inject NavigationManager Navigation
 @inject IConfiguration Configuration
 
 <h1>Test Page is working!</h1>
 <strong>Parameters:</strong>
-<h2>Detail of item with ID: @Id</h2>
-<h2>Category: @Category</h2>
-
+<h4>Detail of item with ID: @Id</h4>
+<h4>Category: @Category</h4>
+<hr />
 <h3>Config Values:</h3>
 <p>API Url: @UrlApi </p>
 <p>Feature enabled: @EnableFeature</p>
-
+<hr />
 <button @onclick="goToPage">Go to page</button>
 
 @code {
