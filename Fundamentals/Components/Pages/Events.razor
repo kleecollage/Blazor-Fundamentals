@@ -1,0 +1,37 @@
+@page "/events"
+
+<h3>Events</h3>
+<button @onclick="OnButtonClick">Click Here!</button>
+<p>@_message</p>
+<hr />
+<div @onmouseover="OnMouseOver" style="border: 1px solid black; padding: 10px;">
+    Move the mouse over here! 
+</div>
+<p>@_messageOver</p>
+<hr />
+<input type="text" @oninput="OnInputChange">
+<p>Current Value: @_inputValue</p>
+
+
+@code {
+    private string _message = "Not Click it jet";
+    private string _messageOver = "Mouse not over";
+    private string _inputValue = "";
+
+    private void OnButtonClick()
+    {
+        _message = "YEI!!!. You make click!";
+    }
+
+    private void OnMouseOver()
+    {
+        _messageOver = "CONGRATS!. You move the mouse over!";
+    }
+
+    private void OnInputChange(ChangeEventArgs e)
+    {
+        _inputValue = e.Value.ToString();
+    }
+    
+    
+}
