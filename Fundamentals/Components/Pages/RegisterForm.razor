@@ -1,0 +1,24 @@
+@page "/register"
+
+<h3>Register Form</h3>
+<input @bind="_newUser.Name" placeholder="Name" type="text">
+<input @bind="_newUser.Email" placeholder="Email" type="text">
+<input @bind="_newUser.Password" placeholder="Password" type="password">
+<button @onclick="RegisterUser">Register</button>
+
+@code {
+    private User _newUser = new User();
+
+    private void RegisterUser()
+    {
+        Console.WriteLine($"User register: {_newUser.Name}, {_newUser.Email}");
+    }
+    
+    /* MODEL */
+    public class User
+    {
+        public string Name { get; set; }
+        public string Email { get; set; }
+        public string Password { get; set; }
+    }
+}

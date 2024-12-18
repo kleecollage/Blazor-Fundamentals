@@ -1,0 +1,10 @@
+@page "/two-way"
+
+<h3>Two Way Data Binding</h3>
+<input @bind="_username" />
+<p>Username: @_username</p>
+
+
+@code {
+    private string _username = "kleeCollage";
+}
