@@ -1,0 +1,23 @@
+<h3>Event Callback</h3>
+<p>Current value is: @CurrentVal</p>
+<button class="btn btn-primary" @onclick="Increment">Increment</button>
+<button class="btn btn-success" @onclick="Decrement">Decrement</button>
+
+@code {
+    [Parameter]
+    public int CurrentVal { get; set; }
+    
+    [Parameter]
+    public EventCallback<int> OnValueChange { get; set; }
+
+    private void Increment()
+    {
+        CurrentVal++;
+        OnValueChange.InvokeAsync(CurrentVal); // Notify to parent component
+    }
+    private void Decrement()
+    {
+        CurrentVal--;
+        OnValueChange.InvokeAsync(CurrentVal); // Notify to parent component
+    }
+}

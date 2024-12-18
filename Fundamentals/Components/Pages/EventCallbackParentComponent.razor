@@ -1,0 +1,14 @@
+@page "/callback"
+<h3>EventCallbackParentComponent</h3>
+<p>Value handle on parent component is: @_parentVal</p>
+ 
+<EventCallback CurrentVal="@_parentVal" OnValueChange="@UpdateVal" /> 
+
+@code {
+    private int _parentVal = 0;
+
+    private void UpdateVal(int newVal)
+    {
+        _parentVal = newVal; // updates
+    }
+}
