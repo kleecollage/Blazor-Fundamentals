@@ -1,0 +1,30 @@
+@page "/syntax"
+<h3>SyntaxRazor</h3>
+@{
+    var a = 2;
+    var b = 5;
+    var c = a * b;
+}
+<h3>@c</h3>
+<p>
+    @d + @e equals to: @(d + e) @*4 + 3 equals to 7*@
+</p>
+<br />
+<h2>@@web - @web </h2>
+<hr />
+<h2 @onmouseover="IncrementCount">Increment Count</h2>
+<p role="status">Current Count: @currentCount</p>
+<hr />
+@((MarkupString)"<h1>This is MarkupString</h1>")
+
+@code {
+    private string web = "www.google.com";
+    private int d = 4;
+    private int e = 3;
+
+    private int currentCount = 0;
+    private void IncrementCount()
+    {
+        currentCount++;
+    }
+}
