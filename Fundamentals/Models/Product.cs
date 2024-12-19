@@ -29,4 +29,8 @@ public class Product
     public string ImageUrl { get; set; }
 
     public string FileName { get; set; }
+    
+    /* CASCADE SELECTOR */
+    public int Selector1 { get; set; }
+    public int Selector2 { get; set; }
 }

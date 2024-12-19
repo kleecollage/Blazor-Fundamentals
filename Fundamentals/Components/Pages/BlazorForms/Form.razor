@@ -40,13 +40,24 @@
                 @* PRODUCT CATEGORY *@
                 <div class="form-group">
                     <label for="category">Category: </label>
-                    <InputSelect id="category" @bind-Value="_product.Category" class="form-control">
-                        <option value="">--Select Category--</option>
-                        <option value="electronic">Electronics</option>
-                        <option value="home">Home</option>
-                        <option value="sports">Sports</option>
-                        <option value="beauty">Beauty</option>
+                    <InputSelect id="category" @bind-Value="_product.Selector1" @onchange="HandleItemsDropDown" class="form-control">
+                        @foreach (var item in items)
+                        {
+                            <option value="@item.Key">@item.Value</option>
+                        }
                     </InputSelect>
+                </div>
+                <div>
+                    @if (subItems.Count > 0)
+                    {
+                        <label for="subcategory">Sub-Category: </label>
+                        <InputSelect id="subcategory" @bind-Value="_product.Selector2" @onchange="HandleSubItemsDropDown" class="form-control">
+                        @foreach (var subitem in subItems)
+                        {
+                            <option value="@subitem.Key">@subitem.Value</option>
+                        }
+                        </InputSelect>
+                    }
                 </div>
                 @* PRODUCT AVAILABILITY *@
                 <div class="form-group">
@@ -97,12 +108,81 @@
         _product.FileName = fileUp.Name;
     }
 
+    /* CASCADE DROP DOWNS */
+    // private CascadeSelector _cascadeSelector = new();
+    private Dictionary<int, string> items = new();
+    private Dictionary<int, string> subItems = new();
+
+    public Form()
+    {
+        items.Add(1, "electronic");
+        items.Add(2, "home");
+        items.Add(3, "sports");
+        items.Add(4, "beauty");
+    }
+
+    public void HandleItemsDropDown(ChangeEventArgs e)
+    {
+        if (string.IsNullOrWhiteSpace(e.Value.ToString()))
+        {
+            _product.Selector1 = 0;
+            _product.Selector2 = 0;
+            subItems = new Dictionary<int, string>();
+            StateHasChanged();
+            return;
+        }
+
+        _product.Selector1 = int.Parse(e.Value.ToString());
+        switch (_product.Selector1)
+        {
+            case 1:
+                subItems = new Dictionary<int, string>();
+                subItems.Add(1, "computers");
+                subItems.Add(2, "mobiles");
+                subItems.Add(3, "headphones");
+                subItems.Add(4, "cameras");
+                break;
+                
+            case 2:
+                subItems = new Dictionary<int, string>();
+                subItems.Add(5, "living room,");
+                subItems.Add(6, "dining room");
+                subItems.Add(7, "bathroom");
+                subItems.Add(8, "beds");
+                break;
+                
+            case 3:
+                subItems = new Dictionary<int, string>();
+                subItems.Add(9, "soccer");
+                subItems.Add(10, "tenis");
+                subItems.Add(11, "contact sports");
+                subItems.Add(12, "volleyball");
+                break;
+                
+            case 4:
+                subItems = new Dictionary<int, string>();
+                subItems.Add(13, "cosmetics");
+                subItems.Add(14, "nails");
+                subItems.Add(15, "hair products");
+                subItems.Add(16, "creams and exfoliants");
+                break;
+            default:
+                subItems = new Dictionary<int, string>();
+                break;
+        }
+        StateHasChanged();
+    }
+
+    public void HandleSubItemsDropDown(ChangeEventArgs e)
+    {
+        if (string.IsNullOrWhiteSpace(e.Value.ToString()))
+        {
+            return;
+        }
+
+        _product.Selector2 = int.Parse(e.Value.ToString());
+    }
 }
-
-
-
-
-
 
 
 
