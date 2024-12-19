@@ -40,23 +40,23 @@
                 @* PRODUCT CATEGORY *@
                 <div class="form-group">
                     <label for="category">Category: </label>
-                    <InputSelect id="category" @bind-Value="_product.Selector1" @onchange="HandleItemsDropDown" class="form-control">
+                    <select id="category" @onchange="HandleItemsDropDown" class="form-control">
                         @foreach (var item in items)
                         {
                             <option value="@item.Key">@item.Value</option>
                         }
-                    </InputSelect>
+                    </select>
                 </div>
                 <div>
                     @if (subItems.Count > 0)
                     {
                         <label for="subcategory">Sub-Category: </label>
-                        <InputSelect id="subcategory" @bind-Value="_product.Selector2" @onchange="HandleSubItemsDropDown" class="form-control">
+                        <select id="subcategory" @onchange="HandleSubItemsDropDown" class="form-control">
                         @foreach (var subitem in subItems)
                         {
                             <option value="@subitem.Key">@subitem.Value</option>
                         }
-                        </InputSelect>
+                        </select>
                     }
                 </div>
                 @* PRODUCT AVAILABILITY *@
@@ -170,7 +170,6 @@
                 subItems = new Dictionary<int, string>();
                 break;
         }
-        StateHasChanged();
     }
 
     public void HandleSubItemsDropDown(ChangeEventArgs e)
