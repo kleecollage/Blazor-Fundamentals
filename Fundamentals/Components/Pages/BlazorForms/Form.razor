@@ -1,0 +1,108 @@
+@page "/products"
+<h3>Blazor Form</h3>
+<EditForm Model="_product" OnValidSubmit="@SaveProduct">
+    <DataAnnotationsValidator/>
+    <ValidationSummary/>
+    <div class="container">
+        <div class="row">
+            <div class="col-8 offset-2">
+                @* PRODUCT NAME *@
+                <div class="form-group">
+                    <label for="name">Product name: </label>
+                    <InputText id="name"
+                               @bind-Value="_product.Name"
+                               class="form-control"
+                               placeholder="Enter the name of the product"/>
+                </div>
+                @* PRODUCT DESCRIPTION *@
+                <div class="form-group">
+                    <label for="description">Product description: </label>
+                    <InputTextArea id="description"
+                                   @bind-Value="_product.Description"
+                                   class="form-control"
+                                   placeholder="Enter the description of the product"/>
+                </div>
+                @* PRODUCT PRICE *@
+                <div class="form-group">
+                    <label for="price">Product price: </label>
+                    <InputNumber id="price" @bind-Value="_product.Price" class="form-control" />
+                </div>
+                @* PRODUCT STOCK *@
+                <div class="form-group">
+                    <label for="stock">Product stock: </label>
+                    <InputNumber id="stock" @bind-Value="_product.Stock" class="form-control" />
+                </div>
+                @* RELEASE DATE *@
+                <div class="form-group">
+                    <label for="date">Release date: </label>
+                    <InputDate id="date" @bind-Value="_product.ReleaseDate" class="form-control" />
+                </div>
+                @* PRODUCT CATEGORY *@
+                <div class="form-group">
+                    <label for="category">Category: </label>
+                    <InputSelect id="category" @bind-Value="_product.Category" class="form-control">
+                        <option value="">--Select Category--</option>
+                        <option value="electronic">Electronics</option>
+                        <option value="home">Home</option>
+                        <option value="sports">Sports</option>
+                        <option value="beauty">Beauty</option>
+                    </InputSelect>
+                </div>
+                @* PRODUCT AVAILABILITY *@
+                <div class="form-group">
+                    <label for="available">Available: </label>
+                    <InputCheckbox id="available" @bind-Value="_product.Available" />
+                </div>
+                @* PRODUCT IMAGE *@
+                <div class="form-group">
+                    <label for="image">Image URL: </label>
+                    <InputText id="image"
+                               @bind-Value="_product.ImageUrl"
+                               class="form-control"
+                               placeholder="Enter the image of the product"/>
+                </div>
+                @* UPLOAD FILE *@
+                <div>
+                    <label for="file">Upload File (image):</label>
+                    <InputFile OnChange="UploadFile">
+                        @if (!string.IsNullOrEmpty(_product.FileName))
+                        {
+                            
+                        }
+                    </InputFile>
+                </div>
+                @* SUBMIT *@
+                <button type="submit" class="btn btn-primary mt-3">Save Product</button>
+            </div>
+        </div>
+    </div>
+</EditForm>
+
+@code {
+    private Product _product = new();
+
+    private void SaveProduct()
+    {
+        Console.WriteLine("Product save successfully!");
+    }
+
+    private IBrowserFile fileUp;
+    
+    private async Task UploadFile(InputFileChangeEventArgs e)
+    {
+        fileUp = e.File;
+        var buffer = new Byte[fileUp.Size];
+        await fileUp.OpenReadStream().ReadAsync(buffer);
+        // save file simultaion
+        _product.FileName = fileUp.Name;
+    }
+
+}
+
+
+
+
+
+
+
+
