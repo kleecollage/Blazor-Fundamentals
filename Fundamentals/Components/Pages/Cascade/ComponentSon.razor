@@ -1,0 +1,13 @@
+<div>
+    <h2>Component Son</h2>
+    <p>Current theme is: @Theme</p>
+    <p>Current language is: @Lang</p>
+</div>
+
+@code {
+    [CascadingParameter(Name = "MyGlobalTheme")]
+    public string Theme { get; set; }
+    
+    [CascadingParameter(Name = "MyGlobalLang")]
+    public string Lang { get; set; }
+}

@@ -1,0 +1,14 @@
+@page "/theme"
+
+<h3>App with parameters on cascade</h3>
+<CascadingValue Name="MyGlobalTheme" Value="globalTheme">
+        <CascadingValue Name="MyGlobalLang" Value="globalLang">
+            <ComponentSon />
+        </CascadingValue>
+</CascadingValue>
+
+
+@code {
+    private string globalTheme = "Light";
+    private string globalLang = "English";
+}
