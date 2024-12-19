@@ -1,0 +1,57 @@
+@page "/list-products"
+<h3>List Products</h3>
+
+<div>
+    @foreach (var product in _products)
+    {
+        <ProductCard Product="product"></ProductCard>
+    }
+</div>
+
+@code {
+    private List<Product> _products { get; set; } = new List<Product> 
+    {
+        new Product()
+        {
+            Id = 1, Name = "Laptop", 
+            Description = "LENOVO ideapad33OS", 
+            Price = 250.99m
+        },
+        new Product() 
+        { 
+            Id = 2, 
+            Name = "Smartphone", 
+            Description = "Samsung Galaxy S21", 
+            Price = 799.99m 
+        },
+        new Product() 
+        { 
+            Id = 3, 
+            Name = "Headphones", 
+            Description = "Sony WH-1000XM4 Noise Cancelling", 
+            Price = 299.50m 
+        },
+        new Product() 
+        { 
+            Id = 4, 
+            Name = "Smartwatch", 
+            Description = "Apple Watch Series 7", 
+            Price = 399.99m 
+        },
+        new Product() 
+        { 
+            Id = 5, 
+            Name = "Tablet", 
+            Description = "iPad Pro 11-inch", 
+            Price = 999.00m 
+        },
+        new Product() 
+        { 
+            Id = 6, 
+            Name = "Gaming Console", 
+            Description = "PlayStation 5", 
+            Price = 499.99m 
+        }
+
+    };
+}
