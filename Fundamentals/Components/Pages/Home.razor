@@ -4,13 +4,25 @@
 @inject ILogger<Home> logger
 
 <PageTitle>Home</PageTitle>
-
 <h1>Hello, world!</h1>
 <h4>Hola Crayola</h4>
-
 Welcome to your new app.
+<br />
+<ButtonComp Text="Send" id="btn-send" class="btn btn-primary" style="font-size: 20px;" />&nbsp;
+<ButtonComp Text="Accept" @attributes="btnAttributes1"/>
 
 @code {
+    public Dictionary<string, object> btnAttributes1 = new()
+    {
+        {"class", "btn btn-success"},
+        {"style", "font-size: 18px"}
+    };
+    
+    public Dictionary<string, object> btnAttributes2 = new()
+    {
+        {"class", "btn btn-warning"},
+        {"style", "font-size: 30px"}
+    };
 
     protected override void OnInitialized()
     {
